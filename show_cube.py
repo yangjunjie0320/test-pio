@@ -3,9 +3,11 @@ import sys
 
 VMD_PATH = "/Users/yangjunjie/Applications/VMD\ 1.9.4a48-Catalina-Rev7.app/Contents/vmd/vmd_MACOSXX86_64"
 
-def show_cube(inp_file, out_file="test.png", iso="0.08"):
+def show_cube(inp_file :str, out_file :str = "test.png", 
+              rotate_x : float = 0.0, rotate_y : float = 0.0,
+              rotate_z : float = 0.0, iso : float = 0.08):
     vmd_cmd = '''
-    proc show_cube {filename {isoval 0.05}} {
+    proc show_cube {filename {isoval 0.08}} {
     #default material
     set mater Glossy
 
@@ -99,9 +101,11 @@ def show_cube(inp_file, out_file="test.png", iso="0.08"):
     }
 
     show_cube {%s} %6.4f
-    rotate x to -70 
+    # rotate x to %6.4f
+    rotate y to %6.4f
+    # rotate z to %6.4f
     render TachyonInternal {%s}
-    '''%(inp_file, iso, out_file)
+    '''%(inp_file, iso, rotate_x, rotate_y, rotate_z, out_file)
 
     with open("tmp.vmd", "w") as f:
         f.write(vmd_cmd)
@@ -111,6 +115,9 @@ def show_cube(inp_file, out_file="test.png", iso="0.08"):
 if __name__ == "__main__":
     inp_file = sys.argv[1]
     out_file = sys.argv[2]
-    iso      = float(sys.argv[3])
+    rotate_x = float(sys.argv[3])
+    rotate_y = float(sys.argv[4])
+    rotate_z = float(sys.argv[5])
+    iso      = float(sys.argv[6])
 
-    show_cube(inp_file, out_file=out_file, iso=iso)
+    show_cube(inp_file, out_file, rotate_x, rotate_y, rotate_z, iso)

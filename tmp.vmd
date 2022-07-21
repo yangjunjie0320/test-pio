@@ -1,5 +1,5 @@
 
-    proc show_cube {filename {isoval 0.05}} {
+    proc show_cube {filename {isoval 0.08}} {
     #default material
     set mater Glossy
 
@@ -92,7 +92,9 @@
     }
     }
 
-    show_cube {./cube/ch3_b_7_2.05e-03.cube} 0.1000
-    rotate x to -70 
-    render TachyonInternal {./png/ch3_b_7_2.05e-03.png}
+    # show_cube {./cube/c2h6_11.cube} 0.1000
+    # rotate x to 0.0000
+    # rotate y to 90.0000
+    # rotate z to 0.0000
+    # render TachyonInternal {test.png}
     
