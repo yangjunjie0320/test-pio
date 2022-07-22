@@ -100,6 +100,7 @@ def build_pio(mf, c_ao_lo=None, frag_a_label=None, frag_b_label=None, tol=1e-2):
     act_idx_a = []
     ext_idx_a = []
 
+    print(sa)
     for p, sp in enumerate(sa):
         if abs(sp - 2.0) < tol:
             cor_idx_a.append(p)
@@ -114,6 +115,7 @@ def build_pio(mf, c_ao_lo=None, frag_a_label=None, frag_b_label=None, tol=1e-2):
     act_idx_b = []
     ext_idx_b = []
 
+    print(sb)
     for p, sp in enumerate(sb):
         if abs(sp - 2.0) < tol:
             cor_idx_b.append(p)
@@ -205,12 +207,20 @@ def build_pio(mf, c_ao_lo=None, frag_a_label=None, frag_b_label=None, tol=1e-2):
 
 if __name__ == "__main__":
     mol = gto.M(atom="""
-    C1    0.0000000    0.0000000   -0.6654946
-    H1    0.0000000    0.9374306   -1.2121600
-    H1   -0.0000000   -0.9374306   -1.2121600
-    C2   -0.0000000    0.0000000    0.6654946
-    H2    0.0000000    0.9374306    1.2121600
-    H2   -0.0000000   -0.9374306    1.2121600
+    H1    0.0215829    0.0000000   -2.9536545
+    C1    0.0094218    0.0000000   -1.8594215
+    C1    0.0015788   -1.2037054   -1.1623875
+    H1    0.0076208   -2.1515287   -1.7106054
+    C1   -0.0134476   -1.2127784    0.2260396
+    H1   -0.0182363   -2.1695331    0.7614692
+    C1   -0.0176599    0.0000000    0.9296143
+    C1   -0.0134476    1.2127784    0.2260396
+    H1   -0.0182363    2.1695331    0.7614692
+    C1    0.0015788    1.2037054   -1.1623875
+    H1    0.0076208    2.1515287   -1.7106054
+    N2    0.0747668    0.0000000    2.3565687
+    H2   -0.3291539   -0.8208939    2.7499007
+    H2   -0.3291539    0.8208939    2.7499007
     """, basis='cc-pvdz')
 
     mol.build()
@@ -223,7 +233,7 @@ if __name__ == "__main__":
     coeff, cas_list, cas_info = build_pio(
         mf, c_ao_lo=c_ao_lo,
         frag_a_label=["C1", "H1"],
-        frag_b_label=["C2", "H2"],
+        frag_b_label=["N2", "H2"],
         tol=1e-2
         )
     cas_nmo, cas_nelec = cas_info
