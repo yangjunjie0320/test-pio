@@ -234,7 +234,7 @@ if __name__ == "__main__":
         mf, c_ao_lo=c_ao_lo,
         frag_a_label=["C1", "H1"],
         frag_b_label=["N2", "H2"],
-        tol=1e-2
+        tol=5e-3
         )
     cas_nmo, cas_nelec = cas_info
 
